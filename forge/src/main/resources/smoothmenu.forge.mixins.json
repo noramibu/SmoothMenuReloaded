@@ -1,8 +1,7 @@
 {
   "required": true,
   "package": "bookercatch.smoothmenu.mixin",
-  "compatibilityLevel": "JAVA_17",
-  "refmap": "smoothmenu.mixins.refmap.json",
+  "refmap": "smoothmenu.forge.refmap.json",
   "client": [
     "SmoothMenuMixin"
   ],

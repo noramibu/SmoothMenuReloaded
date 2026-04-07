@@ -1,126 +1,18 @@
-buildscript {
+allprojects {
+    group = mod_group_id
+    version = "${minecraft_version}-${mod_version}"
+
     repositories {
-        maven { url = 'https://files.minecraftforge.net' }
-        maven { url = 'https://maven.parchmentmc.org' }
-        maven {
-            url "https://repo.spongepowered.org/repository/maven-public/"
-        }
         mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
-        classpath 'org.parchmentmc:librarian:1.+'
-    }
-}
-apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-apply plugin: "org.spongepowered.mixin"
-
-version = "${mc_version}-${mod_version}"
-group = 'bookercatch.smoothmenu' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'SmoothMenu'
-
-// Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
-minecraft {
-    mappings channel: 'parchment', version: '2022.09.18-1.19.2'
-
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
-
-    runs {
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            arg '-mixin.config=smoothmenu.mixins.json'
-
-            mods {
-                smoothmenu {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            arg '-mixin.config=smoothmenu.mixins.json'
-
-            mods {
-                smoothmenu {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'smoothmenu', '--all', '--output', '--existing', file('src/main/resources/')
-
-            mods {
-                smoothmenu {
-                    source sourceSets.main
-                }
-            }
-        }
+        maven { url = 'https://maven.fabricmc.net' }
+        maven { url = 'https://maven.quiltmc.org/repository/release' }
+        maven { url = 'https://maven.neoforged.net/releases' }
     }
 }
 
-apply plugin: 'org.spongepowered.mixin'
-mixin {
-    add sourceSets.main, "smoothmenu.mixins.refmap.json"
-}
-
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-repositories {
-}
-
-dependencies {
-    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-}
-
-// Example for how to get properties into the manifest for reading at runtime.
-jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : "smoothmenu",
-                "Specification-Vendor"    : "bookercatch",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "bookercatch",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"            : "smoothmenu.mixins.json"
-        ])
+subprojects {
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
     }
 }
 
-jar.finalizedBy('reobfJar')
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/mcmodsrepo"
-        }
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
-}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "bookercatch.smoothmenu",
+    "id": "${mod_id}",
+    "version": "${version}",
+    "metadata": {
+      "name": "${mod_name}",
+      "description": "${mod_description}",
+      "license": "${mod_license}"
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "versions": ">=${quilt_loader}"
+      },
+      {
+        "id": "minecraft",
+        "versions": "~${minecraft_version}"
+      },
+      {
+        "id": "java",
+        "versions": ">=25"
+      }
+    ]
+  },
+  "mixin": [
+    "smoothmenu.quilt.mixins.json"
+  ]
+}
+

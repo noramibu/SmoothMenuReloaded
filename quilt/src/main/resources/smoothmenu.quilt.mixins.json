@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "bookercatch.smoothmenu.mixin",
+  "refmap": "smoothmenu.quilt.refmap.json",
+  "client": [
+    "SmoothMenuMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}
+
