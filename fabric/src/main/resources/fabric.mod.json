@@ -5,6 +5,13 @@
   "name": "${mod_name}",
   "description": "${mod_description}",
   "license": "${mod_license}",
+  "authors": [
+    "noramibu",
+    "BookerCatch"
+  ],
+  "contact": {
+    "sources": "https://github.com/noramibu/SmoothMenuReloaded"
+  },
   "environment": "client",
   "mixins": [
     "smoothmenu.fabric.mixins.json"

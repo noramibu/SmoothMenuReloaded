@@ -7,7 +7,14 @@
     "metadata": {
       "name": "${mod_name}",
       "description": "${mod_description}",
-      "license": "${mod_license}"
+      "license": "${mod_license}",
+      "contributors": {
+        "noramibu": "Developer",
+        "BookerCatch": "Developer"
+      },
+      "contact": {
+        "sources": "https://github.com/noramibu/SmoothMenuReloaded"
+      }
     },
     "depends": [
       {
