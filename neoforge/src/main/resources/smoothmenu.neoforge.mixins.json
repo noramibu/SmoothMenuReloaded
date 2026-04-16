@@ -1,7 +1,6 @@
 {
   "required": true,
   "package": "bookercatch.smoothmenu.mixin",
-  "refmap": "smoothmenu.neoforge.refmap.json",
   "client": [
     "SmoothMenuMixin"
   ],
@@ -10,4 +9,5 @@
   },
   "minVersion": "0.8"
 }
+
 

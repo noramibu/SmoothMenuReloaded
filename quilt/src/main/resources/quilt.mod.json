@@ -7,7 +7,7 @@
     "metadata": {
       "name": "${mod_name}",
       "description": "${mod_description}",
-      "license": "${mod_license}",
+      "license": "MIT",
       "contributors": {
         "noramibu": "Developer",
         "BookerCatch": "Developer"
@@ -16,6 +16,7 @@
         "sources": "https://github.com/noramibu/SmoothMenuReloaded"
       }
     },
+    "intermediate_mappings": "net.fabricmc:intermediary",
     "depends": [
       {
         "id": "quilt_loader",

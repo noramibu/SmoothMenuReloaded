@@ -1,7 +1,6 @@
 {
   "required": true,
   "package": "bookercatch.smoothmenu.mixin",
-  "refmap": "smoothmenu.forge.refmap.json",
   "client": [
     "SmoothMenuMixin"
   ],
@@ -10,3 +9,4 @@
   },
   "minVersion": "0.8"
 }
+
