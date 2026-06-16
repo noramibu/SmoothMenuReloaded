@@ -10,6 +10,8 @@ base {
     archivesName = "${mod_id}-forge"
 }
 
+version = "${forge_minecraft_version}-${mod_version}"
+
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(java_version as int)
     withSourcesJar()
@@ -49,7 +51,7 @@ repositories {
 }
 
 dependencies {
-    implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    implementation minecraft.dependency("net.minecraftforge:forge:${forge_minecraft_version}-${forge_version}")
     compileOnly 'org.spongepowered:mixin:0.8.7'
     annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
     annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.1'
@@ -62,7 +64,7 @@ processResources {
             mod_name         : mod_name,
             mod_description  : mod_description,
             mod_license      : mod_license,
-            minecraft_version: minecraft_version,
+            minecraft_version: forge_minecraft_version,
             forge_version    : forge_version
     ]
 
